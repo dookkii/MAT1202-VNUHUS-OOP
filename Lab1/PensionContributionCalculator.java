@@ -1,4 +1,4 @@
-package hus.oop.lab1;
+package lab1;
 
 import java.util.Scanner;
 

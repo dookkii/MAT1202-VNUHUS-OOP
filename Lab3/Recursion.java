@@ -1,4 +1,4 @@
-package Lab3;
+package lab3;
 
 public class Recursion {
     public static int factorial(int n) {

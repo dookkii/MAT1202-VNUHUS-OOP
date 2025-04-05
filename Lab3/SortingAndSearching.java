@@ -1,4 +1,4 @@
-package Lab3;
+package lab3;
 
 public class SortingAndSearching {
     public static boolean linearSearch(int[] array, int key) {

@@ -1,4 +1,4 @@
-package hus.oop.lab1;
+package lab1;
 
 public class SumAverageIRunningInt {
 	public static void main(String[] args) {

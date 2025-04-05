@@ -1,4 +1,5 @@
-package hus.oop.lab1;
+
+package lab1;
 
 public class CheckPassFail {
 	public static void main(String[] args) {

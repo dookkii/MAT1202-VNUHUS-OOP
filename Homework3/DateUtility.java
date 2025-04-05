@@ -1,4 +1,4 @@
-package Homework3;
+package homework3;
 
 public class DateUtility {
     public static String[] strMonths = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dev"};
