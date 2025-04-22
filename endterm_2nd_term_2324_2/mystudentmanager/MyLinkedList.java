@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_2.mystudentmanager;
+package endterm_2nd_term_2324_2.mystudentmanager;
 
 public class MyLinkedList extends AbstractMyList {
     private Node head;

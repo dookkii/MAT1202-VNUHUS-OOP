@@ -1,112 +1,114 @@
-package midterm_2nd_term_2324_2.integration;
+package endterm_2nd_term_2324_2.integration;
 
-public class ArrayPolynomial extends AbstractPolynomial {
-    private static final int DEFAULT_CAPACITY = 8;
-    private double[] coefficients;
-    private int size;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListPolynomial extends AbstractPolynomial {
+    private List<Double> coefficients;
 
     /**
      * Khởi tạo dữ liệu mặc định.
      */
-    public ArrayPolynomial(double[] coefficients) {
-        this.coefficients = coefficients;
-        this.size = coefficients.length;
+    public ListPolynomial(double[] coefficients) {
+        this.coefficients = new ArrayList<>();
+
+        for (double coefficient : coefficients) {
+            this.coefficients.add(coefficient);
+        }
+    }
+
+    public int getSize() {
+        return this.coefficients.size();
     }
 
     /**
-     * Lấy hệ số của đa thức tại phần tử index
-     * @return hệ số tại phần tử index.
+     * Lấy hệ số của đa thức tại vị trí index.
+     * @return
      */
     @Override
     public double coefficient(int index) {
-        if (index > degree()) {
+        if (index >= getSize()) {
             return 0.0;
         }
 
-        return coefficients[index];
+        return coefficients.get(index);
     }
 
     /**
-     * Lấy mảng các hệ số của đa thức.
-     * @return mảng các hệ số của đa thức.
+     * Lấy các hệ số của đa thức.
+     * @return
      */
     @Override
     public double[] coefficients() {
-        return coefficients;
-    }
+        double[] coefficientArray = new double[getSize()];
 
-    /**
-     * Thêm một phần tử có hệ số coefficient vào đầu đa thức.
-     * @param coefficient
-     * @return đa thức hiện tại.
-     */
-    public ArrayPolynomial insertAtStart(double coefficient) {
-        enlarge();
-        for (int i = 0; i < size - 1; i++) {
-            coefficients[i + 1] = coefficients[i];
+        for (int i = 0; i < getSize(); i++) {
+            coefficientArray[i] = coefficients.get(i);
         }
-        coefficients[0] = coefficient;
 
-        return this;
+        return coefficientArray;
     }
 
     /**
-     * Thêm một phần tử có hệ số coefficient vào cuối đa thức.
+     * Thêm phần tử có hệ số coefficient vào đầu đa thức.
      * @param coefficient
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial insertAtEnd(double coefficient) {
-        enlarge();
-        coefficients[size - 1] = coefficient;
-
+    public ListPolynomial insertAtStart(double coefficient) {
+        coefficients.addFirst(coefficient);
         return this;
     }
 
     /**
-     * Thêm một phần tử có hệ số coefficient vào vị trí index.
+     * Thêm phần tử có hệ số coefficient vào cuối đa thức.
+     * @param coefficient
+     * @return đa thức hiện tại.
+     */
+    public ListPolynomial insertAtEnd(double coefficient) {
+        coefficients.addLast(coefficient);
+        return this;
+    }
+
+    /**
+     * Thêm phần tử có hệ số coefficient vào vị trí index.
      * @param coefficient
      * @param index
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial insertAtPosition(double coefficient, int index) {
-        enlarge();
-        for (int i = index; i < size - 1; i++) {
-            coefficients[i + 1] = coefficients[i];
-        }
-        coefficients[index] = coefficient;
-
+    public ListPolynomial insertAtPosition(double coefficient, int index) {
+        coefficients.add(index, coefficient);
         return this;
     }
 
     /**
-     * Thay đổi hệ số của đa thức tại phần tử index.
+     * Sửa hệ số của phần tử index là coefficient.
      * @param coefficient
      * @param index
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial set(double coefficient, int index) {
-        coefficients[index] = coefficient;
+    public ListPolynomial set(double coefficient, int index) {
+        coefficients.set(index, coefficient);
         return this;
     }
 
     /**
-     * Lấy bậc của đa thức.
-     * @return bậc của đa thức.
+     * Lấy ra bậc của đa thức.
+     * @return
      */
     @Override
     public int degree() {
-        return size - 1;
+        return getSize() - 1;
     }
 
     /**
      * Tính giá trị của đa thức khi biết giá trị của x.
-     * @return giá trị của đa thức.
+     * @return
      */
     @Override
     public double evaluate(double x) {
-        double result = 0;
-        for (int index = 0; index < size; index++) {
-            result += coefficients[index] * Math.pow(x, index);
+        double result = 0.0;
+        for (int i = 0; i < coefficients.size(); i++) {
+            result += coefficients.get(i) * Math.pow(x, i);
         }
 
         return result;
@@ -114,53 +116,57 @@ public class ArrayPolynomial extends AbstractPolynomial {
 
     /**
      * Lấy đạo hàm của đa thức.
-     * @return Đa thức kiểu ArrayPolynomial là đa thức đạo hàm của đa thức hiện tại.
+     * @return Đa thức kiểu ListPolynomial là đa thức đạo hàm của đa thức ban đầu.
      */
     @Override
-    public ArrayPolynomial derivative() {
-        if (size == 0) {
-            return new ArrayPolynomial(new double[0]);
+    public ListPolynomial derivative() {
+        if (getSize() == 0) {
+            return new ListPolynomial(new double[0]);
         }
 
         double[] derivativeCoefficients = differentiate();
-        return new ArrayPolynomial(derivativeCoefficients);
+        return new ListPolynomial(derivativeCoefficients);
     }
 
     /**
-     * Cộng một đa thức khác vào đa thức hiện tại.
+     * Cộng đa thức hiện tại với đa thức khác.
      * @param another
      * @return đa thức mới là tổng hai đa thức.
      */
-    public ArrayPolynomial plus(Polynomial another) {
+    public ListPolynomial plus(Polynomial another) {
         int maxDegree = Math.max(degree(), another.degree());
         double[] newCoefficients = new double[maxDegree + 1];
 
         for (int exp = 0; exp <= maxDegree; exp++) {
-            double number1 = (exp <= degree()) ? coefficients[exp] : 0;
+            double number1 = (exp <= degree()) ? coefficients.get(exp) : 0;
             double number2 = (exp <= another.degree()) ? another.coefficients()[exp] : 0;
             newCoefficients[exp] = number1 + number2;
         }
 
-        return new ArrayPolynomial(newCoefficients);
+        return new ListPolynomial(newCoefficients);
     }
 
     /**
-     * Cộng một đa thức khác vào đa thức hiện tại.
+     * Cộng đa thức hiện tại với đa thức khác.
      * @param another
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial plusTo(Polynomial another) {
+    public ListPolynomial plusTo(Polynomial another) {
         int maxDegree = Math.max(degree(), another.degree());
         double[] newCoefficients = new double[maxDegree + 1];
 
         for (int exp = 0; exp <= maxDegree; exp++) {
-            double number1 = (exp <= degree()) ? coefficients[exp] : 0;
+            double number1 = (exp <= degree()) ? coefficients.get(exp) : 0;
             double number2 = (exp <= another.degree()) ? another.coefficient(exp) : 0;
             newCoefficients[exp] = number1 + number2;
         }
 
-        this.coefficients = newCoefficients;
-        this.size = newCoefficients.length;
+        this.coefficients = new ArrayList<>();
+
+        for (double coefficient : newCoefficients) {
+            coefficients.add(coefficient);
+        }
+
         return this;
     }
 
@@ -169,17 +175,17 @@ public class ArrayPolynomial extends AbstractPolynomial {
      * @param another
      * @return đa thức mới là hiệu hai đa thức.
      */
-    public ArrayPolynomial minus(Polynomial another) {
+    public ListPolynomial minus(Polynomial another) {
         int maxDegree = Math.max(degree(), another.degree());
         double[] newCoefficients = new double[maxDegree + 1];
 
         for (int exp = 0; exp <= maxDegree; exp++) {
-            double number1 = (exp <= degree()) ? coefficients[exp] : 0;
+            double number1 = (exp <= degree()) ? coefficients.get(exp) : 0;
             double number2 = (exp <= another.degree()) ? another.coefficients()[exp] : 0;
             newCoefficients[exp] = number1 - number2;
         }
 
-        return new ArrayPolynomial(newCoefficients);
+        return new ListPolynomial(newCoefficients);
     }
 
     /**
@@ -187,18 +193,22 @@ public class ArrayPolynomial extends AbstractPolynomial {
      * @param another
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial minusFrom(Polynomial another) {
+    public ListPolynomial minusFrom(Polynomial another) {
         int maxDegree = Math.max(degree(), another.degree());
         double[] newCoefficients = new double[maxDegree + 1];
 
         for (int exp = 0; exp <= maxDegree; exp++) {
-            double number1 = (exp <= degree()) ? coefficients[exp] : 0;
+            double number1 = (exp <= degree()) ? coefficients.get(exp) : 0;
             double number2 = (exp <= another.degree()) ? another.coefficient(exp) : 0;
             newCoefficients[exp] = number1 - number2;
         }
 
-        this.coefficients = newCoefficients;
-        this.size = newCoefficients.length;
+        this.coefficients = new ArrayList<>();
+
+        for (double coefficient : newCoefficients) {
+            coefficients.add(coefficient);
+        }
+
         return this;
     }
 
@@ -207,7 +217,7 @@ public class ArrayPolynomial extends AbstractPolynomial {
      * @param another
      * @return đa thức mới là đa thức nhân của hai đa thức.
      */
-    public ArrayPolynomial multiply(Polynomial another) {
+    public ListPolynomial multiply(Polynomial another) {
         int newDegree = degree() + another.degree();
         double[] newCoefficients = new double[newDegree + 1];
 
@@ -217,7 +227,7 @@ public class ArrayPolynomial extends AbstractPolynomial {
             }
         }
 
-        return new ArrayPolynomial(newCoefficients);
+        return new ListPolynomial(newCoefficients);
     }
 
     /**
@@ -225,7 +235,7 @@ public class ArrayPolynomial extends AbstractPolynomial {
      * @param another
      * @return đa thức hiện tại.
      */
-    public ArrayPolynomial multiplyBy(Polynomial another) {
+    public ListPolynomial multiplyBy(Polynomial another) {
         int resultDegree = degree() + another.degree();
         double[] newCoefficients = new double[resultDegree + 1];
 
@@ -235,19 +245,12 @@ public class ArrayPolynomial extends AbstractPolynomial {
             }
         }
 
-        this.coefficients = newCoefficients;
-        this.size = newCoefficients.length;
+        this.coefficients = new ArrayList<>();
+
+        for (double coefficient : newCoefficients) {
+            coefficients.add(coefficient);
+        }
+
         return this;
-    }
-
-    /**
-     * Thêm kích thước để lưu đa thức khi cần thiết.
-     */
-    private void enlarge() {
-        double[] newCoefficients = new double[size + 1];
-        System.arraycopy(coefficients, 0, newCoefficients, 0, coefficients.length);
-
-        size++;
-        coefficients = newCoefficients;
     }
 }

@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_2.matrix;
+package endterm_2nd_term_2324_2.matrix;
 
 import java.util.Arrays;
 import java.util.Random;

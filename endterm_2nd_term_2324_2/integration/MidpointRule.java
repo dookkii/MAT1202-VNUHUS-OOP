@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_2.integration;
+package endterm_2nd_term_2324_2.integration;
 
 public class MidpointRule implements Integrator {
     private double precision;

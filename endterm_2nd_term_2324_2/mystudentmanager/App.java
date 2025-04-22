@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_2.mystudentmanager;
+package endterm_2nd_term_2324_2.mystudentmanager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
