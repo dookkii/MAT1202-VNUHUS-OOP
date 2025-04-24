@@ -1,4 +1,4 @@
-package endterm_2nd_term_2324_2.matrix;
+package exam_2324_2nd_endterm_2.matrix;
 
 public class SquareMatrix extends Matrix {
     private int size;

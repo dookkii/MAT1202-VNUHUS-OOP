@@ -1,4 +1,4 @@
-package endterm_2nd_term_2324_2.integration;
+package exam_2324_2nd_endterm_2.integration;
 
 public class IntegrationCalculatorTestDrive {
     public static void main(String[] args) {

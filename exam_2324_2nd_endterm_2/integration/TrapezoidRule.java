@@ -1,10 +1,10 @@
-package endterm_2nd_term_2324_2.integration;
+package exam_2324_2nd_endterm_2.integration;
 
-public class MidpointRule implements Integrator {
+public class TrapezoidRule implements Integrator {
     private double precision;
     private int maxIterations;
 
-    public MidpointRule(double precision, int maxIterations) {
+    public TrapezoidRule(double precision, int maxIterations) {
         this.precision = precision;
         this.maxIterations = maxIterations;
     }
@@ -46,11 +46,11 @@ public class MidpointRule implements Integrator {
      */
     private double integrate(Polynomial poly, double lower, double upper, int numOfSubIntervals) {
         double h = (upper - lower) / numOfSubIntervals;
-        double sum = 0.0;
+        double sum = 0.5 * (poly.evaluate(lower) + poly.evaluate(upper));
 
-        for (int i = 0; i < numOfSubIntervals; i++) {
-            double midpoint = lower + (i + 0.5) * h;
-            sum += poly.evaluate(midpoint);
+        for (int i = 1; i < numOfSubIntervals; i++) {
+            double x = lower + i * h;
+            sum += poly.evaluate(x);
         }
 
         return h * sum;

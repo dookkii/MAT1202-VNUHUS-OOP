@@ -1,10 +1,10 @@
-package endterm_2nd_term_2324_2.integration;
+package exam_2324_2nd_endterm_2.integration;
 
-public class SimpsonRule implements Integrator {
+public class MidpointRule implements Integrator {
     private double precision;
     private int maxIterations;
 
-    public SimpsonRule(double precision, int maxIterations) {
+    public MidpointRule(double precision, int maxIterations) {
         this.precision = precision;
         this.maxIterations = maxIterations;
     }
@@ -37,7 +37,7 @@ public class SimpsonRule implements Integrator {
     }
 
     /**
-     * Phương thức tính xấp xỉ giá trị tích phân với numOfSubIntervals (số chẵn) khoảng phân hoạch đều.
+     * Phương thức tính xấp xỉ giá trị tích phân với numOfSubIntervals khoảng phân hoạch đều.
      * @param poly
      * @param lower
      * @param upper
@@ -46,18 +46,13 @@ public class SimpsonRule implements Integrator {
      */
     private double integrate(Polynomial poly, double lower, double upper, int numOfSubIntervals) {
         double h = (upper - lower) / numOfSubIntervals;
-        double sum = poly.evaluate(lower) + poly.evaluate(upper);
+        double sum = 0.0;
 
-        for (int i = 1; i < numOfSubIntervals; i++) {
-            double x = lower + i * h;
-            if (i % 2 == 0) {
-                sum += 2 * poly.evaluate(x);
-            } else {
-                sum += 4 * poly.evaluate(x);
-            }
+        for (int i = 0; i < numOfSubIntervals; i++) {
+            double midpoint = lower + (i + 0.5) * h;
+            sum += poly.evaluate(midpoint);
         }
 
-        return (h / 3) * sum;
-
+        return h * sum;
     }
 }
