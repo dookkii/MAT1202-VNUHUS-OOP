@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_3.studentmanager;
+package exam_2324_2nd_midterm_3.studentmanager;
 
 public interface StudentComparable extends Comparable<Student> {
     int compareTo(Student another);

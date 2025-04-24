@@ -1,4 +1,4 @@
-package midterm_2nd_term_2324_3.statistics;
+package exam_2324_2nd_midterm_3.statistics;
 
 public class ArrayDataSet extends AbstractDataSet {
     private static final int DEFAULT_CAPACITY = 8;
