@@ -1,0 +1,21 @@
+Test: MyArrayList
+[0.0] [1.0] [2.0] [3.0] [4.0] [5.0]
+[0.0] [1.0] [69] [2.0] [3.0] [4.0] [5.0]
+[0.0] [1.0] [69] [2.0] [3.0] [5.0]
+MyArrayList: Index out of range.
+MyArrayList: Index out of range.
+Max: 69.0
+Min: 0.0
+Mean: 13.333333333333334
+Variance: 622.2222222222221
+
+Test: MyLinkedList
+[0] [1] [2] [3] [4] [5]
+[0] [1] [69] [2] [3] [4] [5]
+[0] [1] [69] [2] [3] [5]
+MyLinkedList: Index out of range.
+MyLinkedList: Index out of range for insert.
+Max: 69.0
+Min: 0.0
+Mean: 13.333333333333334
+Variance: 622.2222222222221
