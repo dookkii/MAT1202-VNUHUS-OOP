@@ -11,5 +11,7 @@ Archive of Object-oriented Programming at VNUHUS 24-25
   - **Lab Class:** Friday, Period 1-3 @ Computer Laboratory (Typical, 508T5)
 
 ## Notes
-- `Lab1`, `Lab2`, `Lab3`, `Homework1`, and `Homework2` are legacy folder-packages in which the class names were incorrectly assigned, not adhering to the Java Coding Convention. Starting from March 17, 2025, specifically from `lab4` onwards, package names will be correctly assigned in compliance with the Java Coding Convention.
-- Besides, the existing packages will retain their current names to avoid conflicts and ensure backward-compatibility.
+- ~~`Lab1`, `Lab2`, `Lab3`, `Homework1`, and `Homework2` are legacy folder-packages in which the class names were incorrectly assigned, not adhering to the Java Coding Convention. Starting from March 17, 2025, specifically from `lab4` onwards, package names will be correctly assigned in compliance with the Java Coding Convention.~~
+- ~~Besides, the existing packages will retain their current names to avoid conflicts and ensure backward-compatibility.~~
+
+- Nah I was just yapping, I refactored all of those.
