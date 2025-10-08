@@ -1,5 +1,5 @@
 # MAT1202, VNUHUS 24-25, Object-oriented Programming
-Archive of Object-oriented Programming at VNUHUS 24-25
+Object-oriented Programming Archive — @ VNUHUS 2024–2025
 
 ## General Information
 - **Course ID:** MAT1202
